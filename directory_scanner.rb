@@ -24,7 +24,7 @@ def scan
     file_read_contents = File.open(fname).read
       if file_read_contents.match(phrase)
         results.puts "#{fname}\t\t\t FOUND MATCH FOR PHRASE [ #{phrase} ]"
-	  total_matches+=1
+	      total_matches+=1
       end
   end
 
