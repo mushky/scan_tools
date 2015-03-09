@@ -16,27 +16,27 @@ def scan
 end
 
 def phrase
-  items = ["Palmchip", "Verilog", "mbus"]
-  #File.open("inputs.txt", "r").readlines.each do |items|
-    items.each do |phrase|
-      File.open("#{phrase}_results.csv", "w")
+  File.open("inputs.txt", "r").readlines.each do |items|
+    new_items = items.split(", ")
+    new_items.each do |phrase|
+      queries = File.open("#{phrase}_results.txt", "w")
       total_matches = 0
 
         total_directories = Dir.glob("#{@dirname}/**/*.*").each do |fname|
         file_read_contents = File.open(fname).read
         if file_read_contents.match(phrase)
-          lines.puts "#{fname}\t\t\t FOUND MATCH FOR PHRASE [ #{phrase} ]"
+          queries.puts "#{fname}\t\t FOUND MATCH FOR PHRASE [ #{phrase} ]"
           total_matches+=1
         end
       end
-    
-    puts "\n=============================================================================="
-    puts "\n                               SCAN RESULTS                                   "
-    puts "\n=============================================================================="
-    puts "\nScanned a Total of #{total_directories.length} files within #{@dirname} directory and sub-directories."
-    puts "Found #{total_matches} Incidents of #{phrase} within #{@dirname} Directory from a Total of #{total_directories.length} Files"
-    puts ""
-    puts "Printing Results to #{phrase}_Results.csv"
+      puts "\n=============================================================================="
+      puts "\n                               SCAN RESULTS                                   "
+      puts "\n=============================================================================="
+      puts "\nScanned a Total of #{total_directories.length} files within #{@dirname} directory and sub-directories."
+      puts "Found #{total_matches} Incidents of #{phrase} within #{@dirname} Directory from a Total of #{total_directories.length} Files"
+      puts ""
+      puts "Printing Results to #{phrase}_Results.txt"
+    end
   end
 end
 
