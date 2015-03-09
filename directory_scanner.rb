@@ -40,11 +40,11 @@ def scan
   puts "\nWould you like to scan another term or phrase?"
   puts "Please Type Yes or No"
   input = gets.chomp.capitalize
-    if (input == "Yes")
-      scan
-    else (input == "No")
-      puts "Thank you for using the Document Scanner. Have a wonderful day and day."
-    end
+  if (input == "Yes")
+    scan
+  else (input == "No")
+    puts "Thank you for using the Document Scanner. Have a wonderful day and day."
+  end
 end
 
 scan
