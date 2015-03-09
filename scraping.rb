@@ -15,28 +15,28 @@ class Post
     @url = @doc.search('.title > a:first-child').map {|link| link['href']}
     @points = @doc.search('.subtext > span:first-child').map { |span| span.inner_text } 
     @num_comments = @doc.search('.subtext > a:nth-child(3)').map {|link| link.inner_text }
-	  item_id_href = @doc.search('.subtext > a:nth-child(3)').map {|link| link['href'] }	
+    item_id_href = @doc.search('.subtext > a:nth-child(3)').map {|link| link['href'] }	
     @item_id = item_id_href[0].scan(/\d+/)
   end
  
   def create_comment_list
-	comments_strings = @doc.search('.comment').map {|comment| comment.inner_text } # Array of Strings
-	comments_strings.each { |comments| @comment_list << Comment.new(comments)}
+    comments_strings = @doc.search('.comment').map {|comment| comment.inner_text } # Array of Strings
+    comments_strings.each { |comments| @comment_list << Comment.new(comments)}
   end
  
   def add_comment(string)
-	  @comment_list << Comment.new(string)
+    @comment_list << Comment.new(string)
   end
  
   def comments
-	  @comment_list
+    @comment_list
   end
  
 end
  
   class Comment
-	def initialize(string)
-	  @comment_text = string
+    def initialize(string)
+    @comment_text = string
   end
 end
  
