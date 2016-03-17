@@ -24,7 +24,7 @@ def phrase
 
         total_directories = Dir.glob("#{@dirname}/**/*.*").each do |fname|
         file_read_contents = File.open(fname).read
-        if file_read_contents.match("phrase")
+        if file_read_contents.match(phrase)
           queries.puts "#{fname}\t\t FOUND MATCH FOR PHRASE [ #{phrase} ]"
           total_matches+=1
         end
